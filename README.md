@@ -92,5 +92,66 @@ Create a super user
 ```
 fill the form creatingo your user to access the django admin, and enter in the url [localhost:8000/admin/](http://localhost:8000/admin/).
 
+
+## Endpoints
+ 
+ - Create User
+ ```
+ POST: /api/user/sing_up
+ header: { 'Content-Type': 'application/json' }
+ body:{
+    'full_name':<full_name:str/>,
+    'email':<email:str/>
+    'password':<password:str/>
+ }
+
+```
+
+- Do login to recover the authentication toke
+ ```
+ POST: /api/user/sing_in/
+ header: { 'Content-Type': 'application/json' }
+ body:{
+    'email':<email:str/>
+    'password':<password:str/>
+ }
+ response 200:{
+    'mesage': 'User Found', 
+    'user': <user_data:object/>,                    
+    'token': <token:str/>
+   }
+    
+```
+
+- Build Computer
+```
+    POST: /api/computer/build_computer/
+    header: { 'Content-Type': 'application/json', 'Authorization':'Token <token:str/>' }
+    body:{
+        'mother_board':<mother_board:str/>,
+        'cpu':<cpu:str/>,
+        'ram':[ {'name:<name:str/>, 'size':<size:int/>},... ],
+        'video_card':<video_card:str/> # This fields is options based on the build computer rule
+    }
+```
+
+- List Computer
+```
+    GET: /api/computer/
+    header: { 'Content-Type': 'application/json', 'Authorization':'Token <token:str/>' }
+```
+
+- List Computer creation date ascendent
+```
+    GET: /api/computer/?sort=asc
+    header: { 'Content-Type': 'application/json', 'Authorization':'Token <token:str/>' }
+```
+
+- List Computer creation date descent
+```
+    GET: /api/computer/?sort=desc
+    header: { 'Content-Type': 'application/json', 'Authorization':'Token <token:str/>' }
+```
+
 ## Author
    - [Igor Brito](https://www.linkedin.com/in/igor-brito-916a60b1/)
