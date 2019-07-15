@@ -11,5 +11,10 @@ class ComputerAdmin(admin.ModelAdmin):
                       'mother_board', 'cpu', 'ram_memory', 'belong', 'video_card', 'created_date']}
                   )]
 
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
 
 admin.site.register(Computer, ComputerAdmin)
