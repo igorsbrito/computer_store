@@ -18,7 +18,9 @@ from django.urls import path, include
 from rest_framework import routers
 from build_computer import views as views_buil_computer
 from userProfile import views as views_user
+from django.contrib import auth
 
+admin.site.unregister(auth.models.Group)
 
 router = routers.DefaultRouter()
 router.register('computer', views_buil_computer.ComputerViewSet)
